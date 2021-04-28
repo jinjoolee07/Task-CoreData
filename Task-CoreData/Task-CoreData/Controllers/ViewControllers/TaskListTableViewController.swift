@@ -43,6 +43,14 @@ class TaskListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let taskToDelete = TaskController.sharedInstance.tasks[indexPath.row]
+            TaskController.sharedInstance.delete(task: taskToDelete)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
     
     // MARK: - Navigation

@@ -23,6 +23,7 @@ class TaskTableViewCell: UITableViewCell {
         
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var completionButton: UIButton!
+    @IBOutlet weak var dueDate: UILabel!
     
     @IBAction func completionButtonTapped(_ sender: Any) {
         if let delegate = delegate {
@@ -33,6 +34,7 @@ class TaskTableViewCell: UITableViewCell {
     func updateViews() {
         guard let task = task else { return }
         taskNameLabel.text = task.name
+        dueDate.text = task.dueDate?.formatDateToString()
         
         if task.isComplete {
             completionButton.setBackgroundImage(UIImage(named: "incomplete"), for: .normal)
